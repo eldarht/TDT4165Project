@@ -31,14 +31,16 @@ object task2 extends App {
     /** Increases the encapsulating objects counter variable.
      * 
      */
-	def increaseCounter(): Unit = {
+	def increaseCounter(): Unit = this.synchronized {
 		counter += 1;
 	}
 
+	/** Reads a counter.
+	 *
+	 */
 	def readCounter(): Unit = {
 		printf("The current value of counter is: %d\n", this.counter);
 	}
-
 
     val thread = createThread(printf("Thread has been run\n"));
     
@@ -48,7 +50,16 @@ object task2 extends App {
     val increaseThread2 = createThread(increaseCounter());
     val readThread = createThread(readCounter());
 
+    // Start the counter threads
    	increaseThread1.start();
    	increaseThread2.start();
+
+   	// Wait for the thread to complete
+   	increaseThread1.join();
+   	increaseThread2.join();
+
+   	// Print result now that both counters are done.
    	readThread.start();
+
+
 }
