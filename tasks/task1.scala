@@ -16,13 +16,13 @@ object task1 extends App {
 		return result;
 	}
 
-	/** Uses a for recurcion to get the sum of an Int array.
+	/** Uses a for recursion to get the sum of an Int array.
 	 *
 	 * @param a Array to sum
 	 *
 	 * @return Sum of array
 	 */
-	def sumRecurcive(a: Array[Int]): Int = {
+	def sumRecursive(a: Array[Int]): Int = {
 		if(a.length > 1){
 			a(0) + sumRecurcive(a.drop(1));
 		}else{
@@ -58,7 +58,7 @@ object task1 extends App {
 
 	println(s"The array is: [$result]");
 	printf("The sum of the array is: %d\n", sumFor(a));
-	printf("The sum of the array is: %d\n", sumRecurcive(a));
+	printf("The sum of the array is: %d\n", sumRecursive(a));
 	printf("The 10th fibonacci number is: %d\n", fibonacci(10));
   
 }
