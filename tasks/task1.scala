@@ -24,7 +24,7 @@ object task1 extends App {
 	 */
 	def sumRecursive(a: Array[Int]): Int = {
 		if(a.length > 1){
-			a(0) + sumRecurcive(a.drop(1));
+			a(0) + sumRecursive(a.drop(1));
 		}else{
 			a(0);
 		}
