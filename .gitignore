@@ -1,2 +1,3 @@
 project_tasks/project/
 project_tasks/target/
+tasks/*.class
