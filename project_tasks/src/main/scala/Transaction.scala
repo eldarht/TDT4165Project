@@ -11,20 +11,41 @@ class TransactionQueue {
     // project task 1.1
     // Add datastructure to contain the transactions
 
-    // Remove and return the first element from the queue
-    def pop: Transaction = ???
+    /**A queue with transaction jobs
+     * 
+     */
+    private val transactionQueue = new mutable.Queue[Transaction];
 
-    // Return whether the queue is empty
-    def isEmpty: Boolean = ???
+    /** Remove and return the first element from the queue
+     *
+     * @return     Unhandled transaction
+     */
+    def pop: Transaction = this.synchronized{this.transactionQueue.dequeue()};
 
-    // Add new element to the back of the queue
-    def push(t: Transaction): Unit = ???
 
-    // Return the first element from the queue without removing it
-    def peek: Transaction = ???
+    /** Return whether the queue is empty
+     *
+     * @return     True if empty, False otherwise.
+     */
+    def isEmpty: Boolean = this.synchronized{this.transactionQueue.isEmpty};
 
-    // Return an iterator to allow you to iterate over the queue
-    def iterator: Iterator[Transaction] = ???
+    /** Add new element to the back of the queue
+     *
+     * @param      t     A transaction job
+     */
+    def push(t: Transaction): Unit = this.synchronized{this.transactionQueue.enqueue(t)};
+
+    /** Return the first element from the queue without removing it
+     *
+     * @return     A transaction job
+     */
+    def peek: Transaction = this.synchronized{this.transactionQueue.head};
+
+    /** Return an iterator to allow you to iterate over the queue
+     *
+     * @return     An itterator
+     */
+    def iterator: Iterator[Transaction] = this.synchronized{this.transactionQueue.iterator}
 }
 
 class Transaction(val transactionsQueue: TransactionQueue,
