@@ -3,19 +3,35 @@ class Bank(val allowedAttempts: Integer = 3) {
     private val transactionsQueue: TransactionQueue = new TransactionQueue()
     private val processedTransactions: TransactionQueue = new TransactionQueue()
 
-    def addTransactionToQueue(from: Account, to: Account, amount: Double): Unit = ???
-                                                // TODO
-                                                // project task 2
-                                                // create a new transaction object and put it in the queue
-                                                // spawn a thread that calls processTransactions
+    /** Adds a transaction to queue.
+     *
+     * @param      from    The account to take from
+     * @param      to      The account to send to
+     * @param      amount  The amount to send
+     */
+    def addTransactionToQueue(from: Account, to: Account, amount: Double): Unit = {
+         val transaction: Transaction = new Transaction(transactionsQueue, null,
+            from, to, amount, allowedAttempts
+        );
 
-    private def processTransactions: Unit = ???
-                                                // TOO
-                                                // project task 2
-                                                // Function that pops a transaction from the queue
-                                                // and spawns a thread to execute the transaction.
-                                                // Finally do the appropriate thing, depending on whether
-                                                // the transaction succeeded or not
+        this.transactionsQueue.push(transaction);
+        
+        val t: Thread = new Thread { 
+            override def run() = processTransactions;
+        }
+
+        t.start;
+    }
+
+    /** Processes a transaction from the queue and logs it in processedTransactions
+     *
+     */
+    private def processTransactions: Unit = {
+
+        val transaction: Transaction = this.transactionsQueue.pop;
+        transaction.run();
+        this.processedTransactions.push(transaction);
+    }
 
     def addAccount(initialBalance: Double): Account = {
         new Account(this, initialBalance)
