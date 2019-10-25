@@ -67,12 +67,17 @@ class Transaction(val transactionsQueue: TransactionQueue,
 
           val errWithdrawn =  from.withdraw(amount);
 
-          if(!errWithdrawn.isRight){
+          if(errWithdrawn.isLeft){
             val errDeposit = to.deposit(amount);
             
             if(errDeposit.isRight){
               from.deposit(amount);
+              this.status = TransactionStatus.FAILED;
+            }else{
+              this.status = TransactionStatus.SUCCESS;
             }
+          }else{
+            this.status = TransactionStatus.FAILED;
           }
       }
 
