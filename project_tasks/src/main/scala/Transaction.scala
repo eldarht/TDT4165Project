@@ -60,11 +60,20 @@ class Transaction(val transactionsQueue: TransactionQueue,
 
   override def run: Unit = {
 
+      /** Executes a transaction. Rolling back changes if action can not be completed.
+       * 
+       */
       def doTransaction() = {
-          // TODO - project task 3
-          // Extend this method to satisfy requirements.
-          from withdraw amount
-          to deposit amount
+
+          val errWithdrawn =  from.withdraw(amount);
+
+          if(!errWithdrawn.isRight){
+            val errDeposit = to.deposit(amount);
+            
+            if(errDeposit.isRight){
+              from.deposit(amount);
+            }
+          }
       }
 
       // TODO - project task 3
