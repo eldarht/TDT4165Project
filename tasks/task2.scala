@@ -42,6 +42,10 @@ object task2 extends App {
 		printf("The current value of counter is: %d\n", this.counter);
 	}
 
+	/*
+	 * For task 2.d see: ./MariesVersion.scala
+	 */
+
     val thread = createThread(printf("Thread has been run\n"));
     
     println(s"The created thread is: $thread");
