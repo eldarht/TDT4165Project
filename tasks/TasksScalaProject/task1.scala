@@ -7,9 +7,9 @@ object task1 extends App {
 // a)
 
 	/** Create array with elements 0-50.
-     *  @return array - array consisting of Ints 0 to 50.
-	 */
-    def createArray(): Array[Int] = {
+    *  @return array - array consisting of Ints 0 to 50.
+	*/
+	def createArray(): Array[Int] = {
       // Array of ints that holds up to 51 elements
       var array = new Array[Int](51)
       for (x <- 0 to 50){
