@@ -72,6 +72,7 @@ object Main extends App {
     def printCounter() = {
         println(counter)
     }
+
     // Test 2b), printing counter
     // printCounter()
     /*
@@ -90,6 +91,7 @@ object Main extends App {
     // Run print function 
     thread3.start();
     */
+    
     /* Running the program a few times, noticing print output: 
       1: 2
       2: 2
