@@ -7,8 +7,8 @@ object task1 extends App {
 // a)
 
 	/** Create array with elements 0-50.
-     *  @return array - array consisting of Ints 0 to 50.
-	 */
+	*  @return array - array consisting of Ints 0 to 50.
+	*/
 	def createArray(): Array[Int] = {
       // Array of ints that holds up to 51 elements
       var array = new Array[Int](51)
@@ -23,11 +23,11 @@ object task1 extends App {
 // b)
 
 	/** Uses a for loop to get the sum of an Int array.
-	 *
-	 * @param a Array to sum.
-	 *
-	 * @return Sum of array.
-	 */
+	*
+	* @param a Array to sum.
+	*
+	* @return Sum of array.
+	*/
 	def sumOfArrayElements(a: Array[Int]): Int = {
 		var result : Int = 0;
 		for(i <- 0 to a.length-1){
@@ -41,11 +41,11 @@ object task1 extends App {
 // c) 
 
 	/** Uses a for recursion to get the sum of an Int array.
-	 *
-	 * @param a Array to sum
-	 *
-	 * @return Sum of array
-	 */
+	*
+	* @param a Array to sum
+	*
+	* @return Sum of array
+	*/
 	def recursiveSumOfArray(a: Array[Int]): Int = {
 		if(a.length > 1){
 			a(0) + recursiveSumOfArray(a.drop(1));
@@ -59,13 +59,13 @@ object task1 extends App {
 // d) 
 
 	/** Naive calculation of the nth fibonacci number without optimization.
-	 *
-	 * BigInt is different from Int in that it can take significantly larger numbers.
-	 * 
-	 * @param n The position of the number in the set of fibonacci numbers to be computed.
-	 *
-	 * @return The nth fibonacci number.
-	 */
+	*
+	* BigInt is different from Int in that it can take significantly larger numbers.
+	* 
+	* @param n The position of the number in the set of fibonacci numbers to be computed.
+	*
+	* @return The nth fibonacci number.
+	*/
 	def fibonacci(n: BigInt): BigInt = {
 		if(n == 0){
 			return 0;

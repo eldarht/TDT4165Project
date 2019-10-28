@@ -7,14 +7,14 @@ object task2 extends App {
 //a)
 
     /** Creates a thread that can run a given function.
-	 *
-	 * This function is a rewrite of the one given in the project_task
-	 * Main.scala file.
-	 *
-	 * @param      function  The function the thread can execute.
-	 *
-	 * @return     The runnable thread (not yet started).
-	 */
+    *
+    * This function is a rewrite of the one given in the project_task
+    * Main.scala file.
+    *
+    * @param      function  The function the thread can execute.
+    *
+    * @return     The runnable thread (not yet started).
+    */
 	def createThread(function: => Unit): Thread = {      
 		val t = new Thread {
             override def run() = function;
@@ -26,41 +26,41 @@ object task2 extends App {
 // Code snippet from task 2b, incrementing counter:
 
     /** Counter to be manipulated by two threads
-     * 
-     * Without synchronization the result might be dependent on a race condition.
-     * Meaning that the result varies depending on where the switching of the threads happens
-     * or if they execute read/writes at the same time.
-     * 
-     * This can, as an example, be problematic your exit condition from a loop is i == 0.
-     * The counter can be changed twice before the next itteratin, going from i==1 to i==-1,
-     * creating an infinite loop.
-     */
+    * 
+    * Without synchronization the result might be dependent on a race condition.
+    * Meaning that the result varies depending on where the switching of the threads happens
+    * or if they execute read/writes at the same time.
+    * 
+    * This can, as an example, be problematic your exit condition from a loop is i == 0.
+    * The counter can be changed twice before the next itteratin, going from i==1 to i==-1,
+    * creating an infinite loop.
+    */
     private var counter: Int = 0;
 
     /** Increases the encapsulating objects counter variable.
-     * 
-     */
+    * 
+    */
 	def increaseCounter(): Unit = {
 		counter += 1;
 	}
 
     /** Function for printing out current counter
-     *   What is this phenomenon called?
-     *       There are two threads sharing the same resource - counter. Whenever a resource is
-     *       accessed, it is not protected from other threads - this is called a race condition. The
-     *       variable can then be "corrupted".
-     *
-     *   Give one example of a situation where it can be problematic.
-     *       If one is checking for a value, i, to be false, and the race condition makes two threads
-     *       increment the value, it may never become false.  
-     */
+    *   What is this phenomenon called?
+    *       There are two threads sharing the same resource - counter. Whenever a resource is
+    *       accessed, it is not protected from other threads - this is called a race condition. The
+    *       variable can then be "corrupted".
+    *
+    *   Give one example of a situation where it can be problematic.
+    *       If one is checking for a value, i, to be false, and the race condition makes two threads
+    *       increment the value, it may never become false.  
+    */
     def printCounter() = {
         printf("The current value of counter is: %d\n", counter);
     }
     
     // Test 2b, printing counter
     // printCounter()
-    /*
+    
     // Creating 3 threads
     val thread1 = createThread(increaseCounter()); //initialize increaseCounter()
     val thread2 = createThread(increaseCounter()); //initialize increaseCounter()
@@ -75,12 +75,12 @@ object task2 extends App {
     thread2.join();
     // Run print function 
     thread3.start();
-    */
+    
 
 // c)
 
     /** increaseCounter function where it is thread safe: Atomicity
-     */
+    */
     def increaseCounterAtomicity(): Unit = this.synchronized {
       counter += 1
     }
@@ -128,9 +128,9 @@ object task2 extends App {
     */
 
     /** Example of deadlock using lazy val. Object A and B has lazy vals depending on each other.
-     *  When thread A starts, it will wait for thread B to set the resource A needs. When thread B is created, it
-     *  will wait for thread A and a deadlock will occur. 
-     */
+    *  When thread A starts, it will wait for thread B to set the resource A needs. When thread B is created, it
+    *  will wait for thread A and a deadlock will occur. 
+    */
     def lazyDeadlock () = {
     
       object A {
