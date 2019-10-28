@@ -149,7 +149,9 @@ object Main extends App {
       Avoiding deadlocks by being able to return to a safe state is also preventive. 
     */
 
-    // Example of deadlock using lazy val
+    // Example of deadlock using lazy val. Object A and B has lazy vals depending on each other.
+    // When thread A starts, it will wait for thread B to set the resource A needs. When thread B is created, it
+    // will wait for thread A and a deadlock will occur. 
 
     def lazyDeadlock () = {
     
@@ -165,13 +167,17 @@ object Main extends App {
       val threadA = createThread(B.b);
       val threadB = createThread(A.c); 
 
-      // Starting the threads 
+      // Starting the threads
+
       threadA.start();
       threadB.start();
-      println(A.c);
+
+      threadA.join();
+      threadB.join();
+      println("No deadlock.");
     }
 
     // Test 2d)
-    //lazyDeadlock()
+    lazyDeadlock()
 
 }
