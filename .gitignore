@@ -1,3 +1,7 @@
 project_tasks/project/
 project_tasks/target/
+
+project_tasks_MariesVersion/project/
+project_tasks_MariesVersion/target/
+
 tasks/*.class
