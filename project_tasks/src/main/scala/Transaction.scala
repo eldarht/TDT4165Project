@@ -65,30 +65,27 @@ class Transaction(val transactionsQueue: TransactionQueue,
        */
       def doTransaction() = {
 
-          val errWithdrawn =  from.withdraw(amount);
-
-          if(errWithdrawn.isLeft){
-            val errDeposit = to.deposit(amount);
+          if(from.withdraw(amount).isLeft){
             
-            if(errDeposit.isRight){
+            if(to.deposit(amount).isRight){
               from.deposit(amount);
-              this.status = TransactionStatus.FAILED;
             }else{
               this.status = TransactionStatus.SUCCESS;
             }
-          }else{
-            this.status = TransactionStatus.FAILED;
           }
       }
 
       // TODO - project task 3
       // make the code below thread safe
-      if (status == TransactionStatus.PENDING) {
+      while(status == TransactionStatus.PENDING && this.attempt < this.allowedAttemps) {
+          this.attempt +=1;
+
           doTransaction
           Thread.sleep(50) // you might want this to make more room for
                            // new transactions to be added to the queue
       }
-
-
+      if(this.attempt >= this.allowedAttemps){
+        this.status = TransactionStatus.FAILED;
+      }
     }
 }
