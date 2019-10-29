@@ -1,4 +1,6 @@
-/** Provides solutions for task 2 a-d. */
+/** Provides solutions for task 2 a-d.
+ * @author Eldar Hauge Torkelsen
+ */
 object task2 extends App {
 	/** Creates a thread that can run a given function.
 	 *

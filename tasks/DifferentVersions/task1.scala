@@ -1,4 +1,6 @@
-/** Provides solutions for task 1 a-d. */
+/** Provides solutions for task 1 a-d. 
+ * @author Eldar Hauge Torkelsen
+ */
 object task1 extends App {
 
 	/** Uses a for loop to get the sum of an Int array.

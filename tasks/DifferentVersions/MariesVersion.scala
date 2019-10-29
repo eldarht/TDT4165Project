@@ -1,5 +1,6 @@
-// My version of project tasks
-
+/** Provides solutions for task 1 and 2.
+ * @author Marie Skatvedt
+ */
 object Main extends App {
 
 //Task 1: Scala introduction
