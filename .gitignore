@@ -5,3 +5,4 @@ project_tasks_MariesVersion/project/
 project_tasks_MariesVersion/target/
 
 tasks/*.class
+tasks/DifferentVersions/*.class
