@@ -1,14 +1,16 @@
 import exceptions._
 
+/** This class describes a bank account.
+ * @constructor sets the bank the account belongs to and the account balance
+ * 
+ * @param bank The bank the account belongs to
+ * @param initialBalance The initial balance in the account
+ */
 class Account(val bank: Bank, initialBalance: Double) {
 
     class Balance(var amount: Double) {}
 
     val balance = new Balance(initialBalance)
-
-    // TODO
-    // for project task 1.2: implement functions
-    // for project task 1.3: change return type and update function bodies
 
     /** Withdraws an amount from the accounts balance
      *
@@ -16,14 +18,16 @@ class Account(val bank: Bank, initialBalance: Double) {
      *  than what is available in the account and that the
      *  withdrawn amount is positive (not a deposit).
      *  
-     * @param      amount  The amount
+     *  Implements task 1.2 and 1.3
+     *  
+     * @param      amount  The amount to be withdrawn from account
      * 
-     * @return     Either right if success or left if not.
+     * @return     Either left with remaining balance if success or right with message.
      */
-    def withdraw(amount: Double): Either[String, String] = this.synchronized{ 
+    def withdraw(amount: Double): Either[Double, String] = this.synchronized{ 
         if(this.balance.amount >= amount && amount > 0.0 ){
             this.balance.amount -= amount;
-            return Left("Transaction Complete");
+            return Left(this.balance.amount);
         }else{
             return Right("Invalid amount");
         }
@@ -34,24 +38,24 @@ class Account(val bank: Bank, initialBalance: Double) {
      *  The function assures that one can not deposit
      *  a negative amount (not a withdrawal).
      *  
-     * @param      amount  The amount
+     * @param      amount  The amount to be deposited
      * 
-     * @return     Either right if success or left if not.
+     * @return     Either left with new balance if success or right with message.
      */
-    def deposit (amount: Double): Either[String, String] = this.synchronized{
-        if(amount > 0){
+    def deposit (amount: Double): Either[Double, String] = this.synchronized{
+        if(amount > 0.0){
             this.balance.amount += amount;
-            return Left("Transaction complete")
+            return Left(this.balance.amount);
         }else{
             return Right("Invalid amount");
         }
     } 
 
-    /** Gets the balance amount.
+    /** Gets the current balance.
      *
-     * @return     The balance amount.
+     * @return     The balance.
      */
-    def getBalanceAmount: Double       = this.synchronized{
+    def getBalanceAmount: Double = this.synchronized{
         return this.balance.amount;
     }
 
