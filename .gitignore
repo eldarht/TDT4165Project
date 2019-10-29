@@ -1,8 +1,10 @@
 project_tasks/project/
 project_tasks/target/
 
-project_tasks_MariesVersion/project/
-project_tasks_MariesVersion/target/
+DifferentVersions/EldarHaugeTorkelsen/project/
+DifferentVersions/EldarHaugeTorkelsen/target/
+DifferentVersions/MarieSkatvedt/target/
+DifferentVersions/MarieSkatvedt/project/
 
 tasks/*.class
 tasks/DifferentVersions/*.class
